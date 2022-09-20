@@ -2,6 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useSession, signIn, signOut } from "next-auth/react"
+import Link from 'next/link'
+
+function searchBookmarks() {
+  console.log("searching.....");
+}
 
 export default function Home() {
   const { data: session } = useSession()
@@ -29,6 +34,9 @@ export default function Home() {
           <button onClick={() => signIn()}>Sign in</button>
         </>}
         </p>
+
+        <button onClick={searchBookmarks}>Get Twitter Bookmarks</button>
+
 
 
       </main>

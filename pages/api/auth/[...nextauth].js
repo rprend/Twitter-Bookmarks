@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import TwitterProvider from "next-auth/providers/twitter"
+import Twitter from 'twitter-lite'
 
 export const authOptions = {
   providers: [
@@ -15,7 +16,7 @@ export const authOptions = {
     },
 
   })
-],
+  ],
 
   /*
   * Sample response from Twitter OAuth 2.0:
@@ -54,10 +55,11 @@ export const authOptions = {
   }
   */
   callbacks: {
-    async jwt({token, user, account={}, profile, isNewUser}) {
+    async jwt({token, user, account={}, profile={}, isNewUser}) {
       // We want to return a token which containts an object called 
       // provider (eg Twitter), along with the access_token and
       // the refresh_token. 
+
       if (account.provider && !token[account.provider] ) {
         token[account.provider] = {};
       }
@@ -68,6 +70,10 @@ export const authOptions = {
 
       if (account.refresh_token) {
         token[account.provider].refresh_token = account.refresh_token;
+      }
+
+      if (profile.data && profile.data.id) {
+        token[account.provider].id = profile.data.id;
       }
 
       return token
