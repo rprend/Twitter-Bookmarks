@@ -2,14 +2,40 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useSession, signIn, signOut } from "next-auth/react"
-import Link from 'next/link'
+import React from 'react'
 
-async function searchBookmarks() {
-  console.log("searching.....");
-}
 
 export default function Home() {
   const { data: session } = useSession()
+  const [loading, setLoading] = React.useState(false)
+  const [bookmarks, setBookmarks] = React.useState(null)
+
+  function get_bookmarks() {
+      setLoading(true)
+      fetch('/api/twitter/search')
+        .then((res) => res.json())
+        .then((data) => {
+          setBookmarks(data.data)
+          setLoading(false)
+        })
+  }
+
+  function display_bookmarks(bookmarks) {
+    console.log(bookmarks)
+
+    return (
+      <ul>
+      {bookmarks.map((bookmark) => (
+        <li key={bookmark.id}>{bookmark.text}</li>
+      ))
+      }
+    </ul>
+    )
+
+    // for (bookmark in bookmarks) {
+    //   <p> {bookmark} </p>
+    // }
+  }
 
   return (
     <div className={styles.container}>
@@ -28,14 +54,26 @@ export default function Home() {
         {session && <>
             Signed in as {session.user.name} <br />
             <button onClick={() => signOut()}>Sign out</button>
-            <button onClick={searchBookmarks}>Get Twitter Bookmarks</button>
+            <button onClick={get_bookmarks}>Get Twitter Bookmarks</button>
          </>}
+        </p>
+
+        {loading && <p>Loading...</p>}
+
         {!session && <>
           Not signed in <br />
           <button onClick={() => signIn('twitter')}>Sign in</button>
         </>}
-        </p>
-
+        
+        {bookmarks && <>
+          <ul>
+            {bookmarks.map((bookmark) => (
+              <li key={bookmark.id}>{bookmark.text}</li>
+            ))
+            }
+          </ul>
+        </>}
+        
 
 
 
