@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import { useSession, signIn, signOut } from "next-auth/react"
 import Link from 'next/link'
 
-function searchBookmarks() {
+async function searchBookmarks() {
   console.log("searching.....");
 }
 
@@ -28,14 +28,14 @@ export default function Home() {
         {session && <>
             Signed in as {session.user.name} <br />
             <button onClick={() => signOut()}>Sign out</button>
+            <button onClick={searchBookmarks}>Get Twitter Bookmarks</button>
          </>}
         {!session && <>
           Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
+          <button onClick={() => signIn('twitter')}>Sign in</button>
         </>}
         </p>
 
-        <button onClick={searchBookmarks}>Get Twitter Bookmarks</button>
 
 
 
