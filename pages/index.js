@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css'
 import { useSession, signIn, signOut } from "next-auth/react"
 import React from 'react'
 
-
 export default function Home() {
   const { data: session } = useSession()
   const [loading, setLoading] = React.useState(false)
@@ -20,21 +19,12 @@ export default function Home() {
         })
   }
 
-  function display_bookmarks(bookmarks) {
-    console.log(bookmarks)
-
-    return (
-      <ul>
-      {bookmarks.map((bookmark) => (
-        <li key={bookmark.id}>{bookmark.text}</li>
-      ))
-      }
-    </ul>
-    )
-
-    // for (bookmark in bookmarks) {
-    //   <p> {bookmark} </p>
-    // }
+  function send_email() {
+    fetch('/api/email')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Email sent")
+      })
   }
 
   return (
@@ -50,6 +40,10 @@ export default function Home() {
           Twitter Newsletter
         </h1>
 
+        <div>
+          <button onClick={send_email}>Send Email</button>
+        </div>
+        
         <p className={styles.description}>
         {session && <>
             Signed in as {session.user.name} <br />
@@ -73,9 +67,6 @@ export default function Home() {
             }
           </ul>
         </>}
-        
-
-
 
       </main>
 
