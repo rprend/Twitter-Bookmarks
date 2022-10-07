@@ -1,4 +1,5 @@
 # Twitter Bookmarks
+### (still in development. do not sign up yet. nothing bad will happen, but it won't work)
 
 ### Welcome
 
@@ -6,7 +7,7 @@ Finally, you can see those Twitter insights and clever threads that you "saved f
 Until months pass and you've forgotten all about it, and all that potential is lost. Future Einsteins are dying in your
 bookmarks folder, waiting to be unlocked. Well their weight is over ...
 
-[Twitter Bookmarks](https://twitterbookmarks.xyz) is a newsletter, that you can subscribe to, which will send you 5 bookmarks
+[Twitter Bookmarks](https://www.tweetnewsletter.xyz/) is a newsletter, that you can subscribe to, which will send you 5 bookmarks
 saved away, every Friday. 
 
 Enjoy
