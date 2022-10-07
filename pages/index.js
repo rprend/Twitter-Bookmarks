@@ -27,6 +27,16 @@ export default function Home() {
       })
   }
 
+  // This is a hacky way to test out the cron job. Do not press!
+  function run_cron() {
+    fetch('/api/cron')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      })
+
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -42,6 +52,10 @@ export default function Home() {
 
         <div>
           <button onClick={send_email}>Send Email</button>
+        </div>
+
+        <div>
+          <button onClick={run_cron}>Run Cron</button>
         </div>
         
         <p className={styles.description}>

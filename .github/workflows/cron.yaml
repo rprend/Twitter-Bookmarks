@@ -2,13 +2,16 @@ name: email-cron
 on:
   schedule:
     # Every Friday at 1:00 PM UTC-- 9 AM Eastern.
-    - cron: '13 1 * * FRI'
+    - cron: '0 13 * * FRI'
+  
+  workflow_dispatch:
+    
 jobs:
-  cron:
+  email:
     runs-on: ubuntu-latest
     steps:
       - name: Call Email Route
         run: |
           curl --request POST \
-          --url 'https://twitterbookmarks.com/api/cron' \
-          --header 'Authorization: Bearer ${{ secrets.EMAIL_API_SECRET }}'
+          --url 'https://www.tweetnewsletter.xyz/api/cron' \
+          --header 'authorization: Bearer ${{ secrets.EMAIL_API_SECRET }}'
