@@ -14,4 +14,4 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://www.tweetnewsletter.xyz/api/cron' \
-          --header 'authorization: Bearer ${{ secrets.EMAIL_API_SECRET }}'
+          --header 'authorization: ${{ secrets.EMAIL_API_SECRET }}'

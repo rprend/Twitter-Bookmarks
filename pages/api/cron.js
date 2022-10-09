@@ -13,7 +13,6 @@ export default async function handler (req, res) {
     const { authorization } = req.headers
 
     if (authorization !== process.env.EMAIL_API_SECRET) {
-      console.log(authorization)
       res.status(401).json({ error: 'Invalid token' })
       return
     }
@@ -23,9 +22,9 @@ export default async function handler (req, res) {
     // and send them. 
     var client = new postmark.ServerClient(process.env.POSTMARK_API_KEY);
 
-    const { data } = await supabase.from('emails').select('*')
-    console.log(data)
-    client.sendEmail({
+    const data = await read_database()
+    
+    await client.sendEmail({
       "From": "newsletter@tweetnewsletter.xyz",
       "To": "newsletter@tweetnewsletter.xyz",
       "Subject": "Test",
