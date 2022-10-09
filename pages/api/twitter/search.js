@@ -7,5 +7,5 @@ export default async function search(req, res) {
     { headers: { Authorization: `Bearer ${token.twitter.access_token}` } }
   )
   const data = await response.json()
-  res.json(data)
+  return data
 }
