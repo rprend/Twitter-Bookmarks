@@ -37,6 +37,30 @@ export default function Home() {
 
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const data = {
+      email: event.currentTarget.email.value,
+      user: session.user.name
+    }
+
+    const JSONdata = JSON.stringify(data)
+    const endpoint = '/api/parse_bookmarks'
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSONdata,
+    }
+    const response = await fetch(endpoint, options)
+    console.log(response)
+
+  }
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -57,6 +81,14 @@ export default function Home() {
         <div>
           <button onClick={run_cron}>Run Cron</button>
         </div>
+        {session &&
+        <div>
+          <form onSubmit={handleSubmit} method="POST">
+            <input type="email" placeholder="Email" name="email" required />
+            <button type="submit">Sign Up for the Newsletter!</button>
+          </form>
+        </div>
+        }
         
         <p className={styles.description}>
         {session && <>
@@ -84,18 +116,6 @@ export default function Home() {
 
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }

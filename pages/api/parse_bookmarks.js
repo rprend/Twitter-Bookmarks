@@ -69,10 +69,14 @@ export default async function handler (req, res) {
     // an active session. So I'm not sure how to do this, and for now I'll stick with generating emails at sign up time.
     const clusters = cluster_tweets(bookmarks.data)
 
-
     // Username from twitter api. Email has to come from input cause twitter doesn't give it to us.
-    const user = ""
-    const email = ""
+    if (!req.body || !req.body.email) {
+      res.status(400).send("No email provided")
+      return
+    }
+    const email = req.body.email
+    const user = req.body.user ? req.body.user : "Friend"
+
     var date = null
 
     var week_index = 0
