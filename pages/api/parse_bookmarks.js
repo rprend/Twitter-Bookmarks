@@ -52,7 +52,7 @@ function get_friday(weeks) {
     date.getDate() + (day <= 5 ? 5 - day : 12 - day) + (weeks * 7)
   )
 
-  return nth_friday
+  return nth_friday.toDateString()
 
 }
 
@@ -97,7 +97,7 @@ export default async function handler (req, res) {
       const { data, error } = await supabase
         .from('emails')
         .insert([
-          { user: user, email: email, send_date: date, tweet_list: cluster }
+          { user: user, email: email, date: date, tweet_list: cluster }
         ])
 
       if (error) {
