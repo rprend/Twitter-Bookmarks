@@ -86,6 +86,9 @@ function generate_email(row) {
   })
 }
 
+
+// Data: A list of rows from the database that we want to send.
+// Returns: A promise for a list of emails sent to the Postmark API. 
 async function send_emails(data) {
   var email_promises = data.map(row => {
     return generate_email(row).then(email_body => {
@@ -116,8 +119,12 @@ export default async function handler (req, res) {
       return
     }
 
+    // Why await on the database read but not the email send? Duh cause the email send depends 
+    // on database read, while nothing depends on the email send. So we can return that so that the 
+    // cron job doesn't hang too long and let the promises resolve in the background (i think that's how it 
+    // works, i hope it's not something cruel like if you exit the page the promise dies)
     const data = await read_database()
-    send_emails(data)
+    await send_emails(data)
 
     res.status(200).json({ data: 'Emails queued, check logs for any errors' })
 
