@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import { useSession, signIn, signOut } from "next-auth/react"
 import React from 'react'
 
@@ -62,48 +60,56 @@ export default function Home() {
 
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Twitter Newsletter</title>
         <meta name="description" content="Five bookmarked tweets delivered to your inbox, every Thursday." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <main>
+        <div className="container">
+          <div className="sidebar">
+            <h1 className="title-header">
+              Twitter Newsletter
+            </h1>
+          </div>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Twitter Newsletter
-        </h1>
+          <div className='content-container'>
+            <p>We've all saved a funny tweet, or an interesting insight, thinking "oh i'll check that out later."
+              But later never comes. So i programmed this to read your bookmarks and send them to you in a weekly email. 
+              <br />
+              Privacy warning 
+              You can see the source code <a href="https://github.com/rprend/twitter-bookmarks">here</a>
+            </p>
+            {!session && <>
+              <button onClick={() => signIn('twitter')}>Sign up with twitter</button>
+            </>}
+              
+            {session &&
+            <div>
+              <p>Please enter the email you'd like to send the newsletter to</p>
+              <form onSubmit={handleSubmit} method="POST">
+                <input type="email" placeholder="Email" name="email" required />
+                <button type="submit">Sign Up for the Newsletter!</button>
+              </form>
+            </div>
+            }
 
-        <div>
-          <button onClick={send_email}>Send Email</button>
+            {session && 
+            <p>
+              Signed in as {session.user.name} <br />
+              <button onClick={() => signOut()}>Sign out</button>
+            </p>
+            }
+
+          </div>
         </div>
 
-        <div>
-          <button onClick={run_cron}>Run Cron</button>
-        </div>
-        {session &&
-        <div>
-          <form onSubmit={handleSubmit} method="POST">
-            <input type="email" placeholder="Email" name="email" required />
-            <button type="submit">Sign Up for the Newsletter!</button>
-          </form>
-        </div>
-        }
+
         
-        <p className={styles.description}>
-        {session && <>
-            Signed in as {session.user.name} <br />
-            <button onClick={() => signOut()}>Sign out</button>
-            <button onClick={get_bookmarks}>Get Twitter Bookmarks</button>
-         </>}
-        </p>
-
+  
         {loading && <p>Loading...</p>}
 
-        {!session && <>
-          Not signed in <br />
-          <button onClick={() => signIn('twitter')}>Sign in</button>
-        </>}
         
         {bookmarks && <>
           <ul>
