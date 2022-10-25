@@ -1,6 +1,73 @@
+@font-face {
+  font-family: 'Array-Regular';
+  src: url('../fonts/Array-Regular.woff2') format('woff2'),
+       url('../fonts/Array-Regular.woff') format('woff'),
+       url('../fonts/Array-Regular.ttf') format('truetype');
+       font-weight: 400;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Array-Wide';
+  src: url('../fonts/Array-Wide.woff2') format('woff2'),
+       url('../fonts/Array-Wide.woff') format('woff'),
+       url('../fonts/Array-Wide.ttf') format('truetype');
+       font-weight: 400;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Array-Semibold';
+  src: url('../fonts/Array-Semibold.woff2') format('woff2'),
+       url('../fonts/Array-Semibold.woff') format('woff'),
+       url('../fonts/Array-Semibold.ttf') format('truetype');
+       font-weight: 600;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Array-SemiboldWide';
+  src: url('../fonts/Array-SemiboldWide.woff2') format('woff2'),
+       url('../fonts/Array-SemiboldWide.woff') format('woff'),
+       url('../fonts/Array-SemiboldWide.ttf') format('truetype');
+       font-weight: 600;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Array-Bold';
+  src: url('../fonts/Array-Bold.woff2') format('woff2'),
+       url('../fonts/Array-Bold.woff') format('woff'),
+       url('../fonts/Array-Bold.ttf') format('truetype');
+       font-weight: 700;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Array-BoldWide';
+  src: url('../fonts/Array-BoldWide.woff2') format('woff2'),
+       url('../fonts/Array-BoldWide.woff') format('woff'),
+       url('../fonts/Array-BoldWide.ttf') format('truetype');
+       font-weight: 700;
+       font-display: swap;
+       font-style: normal;
+}
+
+
 html,
 body {
   padding: 0;
+  color: antiquewhite;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -19,31 +86,32 @@ p {
   margin: 0;
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
+main {
+  margin: 2rem 2rem;
+  background-color: black;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .content-container {
   display: flex;
+  max-width: 42rem;
+  margin: auto;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  flex: 1;
-  justify-content: ;
+  max-height: 90vh;
+  padding: 1rem 0;
 }
 
-.sidebar {
-  background-color: aliceblue;
+.header {
+  align-items: center;
+  font-size: 5rem;
+  font-family: 'Array-BoldWide';
 }
 
 .title-header {
   margin: 10px;
-  line-height: 1.15;
-  font-size: 3rem;
-  text-align: center; 
+  text-align: left; 
 }
 
 @media (prefers-color-scheme: dark) {

@@ -67,15 +67,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="container">
-          <div className="sidebar">
+          <div className="header">
             <h1 className="title-header">
               Twitter Newsletter
             </h1>
           </div>
 
           <div className='content-container'>
-            <p>We've all saved a funny tweet, or an interesting insight, thinking "oh i'll check that out later."
+            <p>We&apos;ve all saved a funny tweet, or an interesting insight, thinking &quot;oh i&apos;ll check that out later.&quot;
               But later never comes. So i programmed this to read your bookmarks and send them to you in a weekly email. 
               <br />
               Privacy warning 
@@ -87,7 +86,7 @@ export default function Home() {
               
             {session &&
             <div>
-              <p>Please enter the email you'd like to send the newsletter to</p>
+              <p>Please enter the email you&apos;d like to send the newsletter to</p>
               <form onSubmit={handleSubmit} method="POST">
                 <input type="email" placeholder="Email" name="email" required />
                 <button type="submit">Sign Up for the Newsletter!</button>
@@ -102,11 +101,7 @@ export default function Home() {
             </p>
             }
 
-          </div>
-        </div>
-
-
-        
+          </div>        
   
         {loading && <p>Loading...</p>}
 
