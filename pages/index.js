@@ -67,42 +67,55 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-          <div className="header">
-            <h1 className="title-header">
-              Twitter Newsletter
-            </h1>
-          </div>
-
-          <div className='content-container'>
-            <p>We&apos;ve all saved a funny tweet, or an interesting insight, thinking &quot;oh i&apos;ll check that out later.&quot;
-              But later never comes. So i programmed this to read your bookmarks and send them to you in a weekly email. 
-              <br />
-              Privacy warning 
-              You can see the source code <a href="https://github.com/rprend/twitter-bookmarks">here</a>
-            </p>
-            {!session && <>
-              <button onClick={() => signIn('twitter')}>Sign up with twitter</button>
-            </>}
-              
-            {session &&
-            <div>
-              <p>Please enter the email you&apos;d like to send the newsletter to</p>
-              <form onSubmit={handleSubmit} method="POST">
-                <input type="email" placeholder="Email" name="email" required />
-                <button type="submit">Sign Up for the Newsletter!</button>
-              </form>
+        <div className="content">
+          <div className="content-box">
+            <div className="header">
+              <h1 className="title-header">
+                Twitter Newsletter
+              </h1>
             </div>
-            }
 
-            {session && 
-            <p>
-              Signed in as {session.user.name} <br />
-              <button onClick={() => signOut()}>Sign out</button>
-            </p>
-            }
+            { /* We have three columns in this flexbox. The first, empty as a separator. The second, 
+              holding our paragraph explainer. The third holds the "sign in with twitter button, and after 
+              sign in the input field and sign up" */}
+            <div className='main-content-container'>
+              
+              <div className='spacer'></div>
+              <div className='text-paragraph'>
+                <p>We&apos;ve all saved a funny tweet, or an interesting insight, thinking &quot;oh i&apos;ll check that out later.&quot;
+                  But later never comes. So i programmed this to read your bookmarks and send them to you in a weekly email. 
+                  <br />
+                  Privacy warning 
+                  You can see the source code <a href="https://github.com/rprend/twitter-bookmarks">here</a>
+                </p>
+              </div>
+              <div>
+                {!session && <>
+                  <button onClick={() => signIn('twitter')}>Sign up with twitter</button>
+                </>}
+                  
+                {session &&
+                <div>
+                  <p>Please enter the email you&apos;d like to send the newsletter to</p>
+                  <form onSubmit={handleSubmit} method="POST">
+                    <input type="email" placeholder="Email" name="email" required />
+                    <button type="submit">Sign Up for the Newsletter!</button>
+                  </form>
+                </div>
+                }
 
+                {session && 
+                <p>
+                  Signed in as {session.user.name} <br />
+                  <button onClick={() => signOut()}>Sign out</button>
+                </p>
+                }
+              </div>
+
+            </div>
           </div>        
-  
+        </div>
+
         {loading && <p>Loading...</p>}
 
         

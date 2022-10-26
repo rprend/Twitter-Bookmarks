@@ -63,9 +63,20 @@
        font-style: normal;
 }
 
+@font-face {
+  font-family: 'Khand-Regular';
+  src: url('../fonts/Khand-Regular.woff2') format('woff2'),
+       url('../fonts/Khand-Regular.woff') format('woff'),
+       url('../fonts/Khand-Regular.ttf') format('truetype');
+       font-weight: 400;
+       font-display: swap;
+       font-style: normal;
+}
+
 
 html,
 body {
+  height: 100vh;
   padding: 0;
   color: antiquewhite;
   margin: 0;
@@ -83,29 +94,39 @@ a {
 }
 
 p {
-  margin: 0;
+  font-family: 'Khand-Regular';
+  font-size: 1.5rem;
 }
 
-main {
-  margin: 2rem 2rem;
+
+.content-box {
   background-color: black;
-  height: 100vh;
+  margin: 10px 10px;
   box-sizing: border-box;
 }
 
-.content-container {
+.main-content-container {
   display: flex;
-  max-width: 42rem;
   margin: auto;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   max-height: 90vh;
   padding: 1rem 0;
 }
 
+.spacer {
+  min-width: 250px;
+}
+
+.text-paragraph {
+  max-width: 67vw;
+}
+
 .header {
   align-items: center;
-  font-size: 5rem;
+  font-size: 5vw;
+  line-height: .8;
+  padding-top: 1vh;
   font-family: 'Array-BoldWide';
 }
 
