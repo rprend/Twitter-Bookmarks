@@ -60,7 +60,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <>
       <Head>
         <title>Twitter Newsletter</title>
         <meta name="description" content="Five bookmarked tweets delivered to your inbox, every Thursday." />
@@ -84,14 +84,14 @@ export default function Home() {
               <div className='text-paragraph'>
                 <p>We&apos;ve all saved a funny tweet, or an interesting insight, thinking &quot;oh i&apos;ll check that out later.&quot;
                   But later never comes. So i programmed this to read your bookmarks and send them to you in a weekly email. 
-                  <br />
-                  Privacy warning 
-                  You can see the source code <a href="https://github.com/rprend/twitter-bookmarks">here</a>
+                  <br /><br />
+                  Privacy warning: <br />
+                  You can see the source code <a href="https://github.com/rprend/twitter-bookmarks" target="_blank" rel="noopener noreferrer">here</a>
                 </p>
               </div>
               <div>
                 {!session && <>
-                  <button onClick={() => signIn('twitter')}>Sign up with twitter</button>
+                  <button className='twitter-signup-button' onClick={() => signIn('twitter')}>Sign up with twitter</button>
                 </>}
                   
                 {session &&
@@ -130,6 +130,6 @@ export default function Home() {
 
       </main>
 
-    </div>
+    </>
   )
 }

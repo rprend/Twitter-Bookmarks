@@ -73,6 +73,9 @@
        font-style: normal;
 }
 
+#__next {
+  height: 100vh;
+}
 
 html,
 body {
@@ -98,16 +101,24 @@ p {
   font-size: 1.5rem;
 }
 
+main {
+  height: 100vh;
+  position: absolute;
+}
 
 .content-box {
   background-color: black;
-  margin: 10px 10px;
+  padding: 10px 10px;
+  height: 100vh;
+  width: 100vw;
+  background-clip: content-box;
   box-sizing: border-box;
 }
 
 .main-content-container {
   display: flex;
   margin: auto;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   max-height: 90vh;
@@ -115,11 +126,11 @@ p {
 }
 
 .spacer {
-  min-width: 250px;
+  min-width: 17vw;
 }
 
 .text-paragraph {
-  max-width: 67vw;
+  max-width: 60vw;
 }
 
 .header {
@@ -135,6 +146,14 @@ p {
   text-align: left; 
 }
 
+.twitter-signup-button {
+  background-color: #1DA1F2;
+  color: #F5F8FA;
+  border-radius: 10px;
+  padding: 10px;
+  border: 0 0;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -142,5 +161,12 @@ p {
   body {
     color: white;
     background: black;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .spacer {
+    min-width: none;
+    width: 0;
   }
 }
